@@ -1,9 +1,12 @@
 package me.felixcodes.ipl_dasboard.models;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 @Entity
 public class Team {
@@ -15,8 +18,19 @@ public class Team {
     private long totalMatches;
     private long totalWins;
 
+    @Transient
+    private List<Match> matches;
+
     public long getId() {
         return id;
+    }
+
+    public List<Match> getMatches() {
+        return matches;
+    }
+
+    public void setMatches(List<Match> matches) {
+        this.matches = matches;
     }
 
     public void setId(long id) {
@@ -58,4 +72,6 @@ public class Team {
                 + totalWins + "]";
     }
 
+    public Team() {
+    }
 }
